@@ -1,1 +1,1 @@
-web: python PogodaTelegramBot.py
+worker: python PogodaTelegramBot.py
