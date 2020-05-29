@@ -6,6 +6,8 @@ import telebot
 #owm = pyowm.OWM('a2796b736dbdd2d94dd087be1702d1da', language = "ru")
 bot = telebot.TeleBot("927570306:AAFGbFphrT6wzo9hFLRi5dH85xTRehZDWz0")
 
+server = Flask(__name__)
+
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
 	bot.send_message(message.chat.id, "Введите город")
@@ -27,5 +29,9 @@ def send_echo(message):
 
 		city = "Введите город" + "\n\n"
 		bot.send_message(message.chat.id, city)
+
+    if __name__ == '__main__':
+        server.debug = True
+        server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
 
 bot.polling(none_stop = True)
